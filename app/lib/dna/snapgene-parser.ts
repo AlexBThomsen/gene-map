@@ -1,5 +1,7 @@
-import { DNASequence, SequenceFeature, RestrictionSite } from './types';
+import type { DNASequence, SequenceFeature } from './types';
 import { DOMParser } from 'xmldom';
+import { Buffer } from 'buffer';
+import fs from 'fs/promises';
 
 /**
  * Parse a SnapGene file and return a DNASequence object.
@@ -19,7 +21,6 @@ export async function parseSnapGeneFile(buffer: Buffer): Promise<DNASequence> {
     updatedAt: new Date()
   };
 
-  // Iterate through packets
   let offset = 0;
   
   // First packet should be a cookie packet
@@ -146,7 +147,7 @@ function parseFeaturesPacket(data: Buffer, record: Partial<DNASequence>): void {
       const feature = features[i];
       
       // Get feature type
-      let type = feature.getAttribute('type') || 'misc_feature';
+      const type = feature.getAttribute('type') || 'misc_feature';
       
       // Get directionality
       let strand = +1;
@@ -319,7 +320,6 @@ function getColorForFeatureType(type: string): string {
 
 // For server-side use
 export async function parseSnapGeneFileFromPath(filePath: string): Promise<DNASequence> {
-  const fs = require('fs').promises;
   const buffer = await fs.readFile(filePath);
   return parseSnapGeneFile(buffer);
 } 

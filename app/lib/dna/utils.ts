@@ -136,6 +136,7 @@ export function simulateDigest(
   
   for (let i = 0; i < relevantSites.length; i++) {
     const site = relevantSites[i];
+    if (!site.cutSite) continue;
     const cutPosition = site.start + site.cutSite - 1;
     
     // Fragment from previous cut to this cut
@@ -163,14 +164,14 @@ export function simulateDigest(
   }
   
   // Add the last fragment (for linear DNA) or wrap around (for circular DNA)
-  if (dnaSequence.circular) {
+  if (dnaSequence.circular && relevantSites[0]?.cutSite) {
     const lastFragment = {
       sequence: dnaSequence.sequence.substring(prevEnd) + dnaSequence.sequence.substring(0, relevantSites[0].start + relevantSites[0].cutSite - 1),
       start: prevEnd + 1,
       end: dnaSequence.length + relevantSites[0].start + relevantSites[0].cutSite - 1,
       features: dnaSequence.features.filter(feature => 
         feature.start > prevEnd || 
-        feature.end < relevantSites[0].start + relevantSites[0].cutSite
+        feature.end < relevantSites[0]!.start + relevantSites[0]!.cutSite!
       )
     };
     fragments.push(lastFragment);

@@ -12,7 +12,6 @@ interface PlasmidLibraryClientProps {
 
 export default function PlasmidLibraryClient({ plasmids, onSelectPlasmid }: PlasmidLibraryClientProps) {
   const [searchQuery, setSearchQuery] = useState('');
-  const categories = Object.keys(plasmids);
   
   // Filter plasmids based on search query
   const filteredPlasmids = searchQuery.trim() === '' 
@@ -47,7 +46,7 @@ export default function PlasmidLibraryClient({ plasmids, onSelectPlasmid }: Plas
           
           {filteredCategories.length === 0 && searchQuery.trim() !== '' && (
             <div className="text-center text-muted-foreground p-4">
-              No plasmids found matching "{searchQuery}".
+              No plasmids found matching &quot;{searchQuery}&quot;.
             </div>
           )}
           

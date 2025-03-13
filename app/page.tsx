@@ -6,10 +6,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import PlasmidMap from './components/plasmid-map/PlasmidMap';
 import SequenceViewer from './components/sequence-viewer/SequenceViewer';
 import FileImport from './components/sequence-viewer/FileImport';
-import CloningTools from './components/cloning-tools/CloningTools';
-import FeatureEditor from './components/feature-annotation/FeatureEditor';
 import PlasmidLibrary from './components/plasmid-library/PlasmidLibrary';
-import { DNASequence, SequenceFeature, RestrictionSite } from './lib/dna/types';
+import { DNASequence, SequenceFeature } from './lib/dna/types';
 import { loadSequencesFromLocalStorage, saveSequenceToLocalStorage, exportToFasta, exportToGenBank } from './lib/dna/sequence-service';
 import { toast } from 'sonner';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
@@ -18,7 +16,6 @@ export default function Home() {
   const [sequences, setSequences] = useState<DNASequence[]>([]);
   const [activeSequence, setActiveSequence] = useState<DNASequence | null>(null);
   const [selectedFeature, setSelectedFeature] = useState<SequenceFeature | null>(null);
-  const [selectedRestrictionSite, setSelectedRestrictionSite] = useState<RestrictionSite | null>(null);
   const [activeTab, setActiveTab] = useState("plasmid-map");
 
   // Load sequences from localStorage on initial render
@@ -54,7 +51,6 @@ export default function Home() {
     if (selected) {
       setActiveSequence(selected);
       setSelectedFeature(null);
-      setSelectedRestrictionSite(null);
     }
   };
 
@@ -75,12 +71,10 @@ export default function Home() {
   // Handle feature click
   const handleFeatureClick = (feature: SequenceFeature) => {
     setSelectedFeature(feature);
-    setSelectedRestrictionSite(null);
   };
 
   // Handle restriction site click
-  const handleRestrictionSiteClick = (site: RestrictionSite) => {
-    setSelectedRestrictionSite(site);
+  const handleRestrictionSiteClick = () => {
     setSelectedFeature(null);
   };
 

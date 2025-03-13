@@ -1,4 +1,4 @@
-import { DNASequence, RestrictionSite, SequenceFeature } from './types';
+import type { DNASequence, SequenceFeature } from './types';
 import { v4 as uuidv4 } from 'uuid';
 import { findRestrictionSites } from './utils';
 
@@ -279,7 +279,6 @@ export function parseGenBank(genbankContent: string): DNASequence {
     description: description || undefined,
     organism: organism || undefined,
     accession: accession || undefined,
-    source: 'GenBank',
     createdAt: new Date(),
     updatedAt: new Date()
   };
@@ -363,7 +362,7 @@ export function saveSequenceToLocalStorage(sequence: DNASequence): void {
   try {
     // Get existing sequences
     const existingSequencesJson = localStorage.getItem('dnaSequences');
-    let sequences: DNASequence[] = existingSequencesJson 
+    const sequences: DNASequence[] = existingSequencesJson 
       ? JSON.parse(existingSequencesJson) 
       : [];
     
@@ -391,17 +390,10 @@ export function saveSequenceToLocalStorage(sequence: DNASequence): void {
  * @returns Array of DNA sequences
  */
 export function loadSequencesFromLocalStorage(): DNASequence[] {
-  try {
-    const sequencesJson = localStorage.getItem('dnaSequences');
-    if (!sequencesJson) {
-      return [];
-    }
-    
-    return JSON.parse(sequencesJson);
-  } catch (error) {
-    console.error('Error loading sequences from localStorage:', error);
-    return [];
-  }
+  if (typeof window === 'undefined') return [];
+  
+  const sequences = JSON.parse(localStorage.getItem('dnaSequences') || '[]');
+  return sequences;
 }
 
 /**

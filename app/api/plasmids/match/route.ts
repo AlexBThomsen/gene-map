@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { promises as fs } from 'fs';
 import path from 'path';
 import { parseSnapGeneFile } from '@/app/lib/dna/snapgene-parser';
-import { DNASequence, SequenceFeature } from '@/app/lib/dna/types';
+import { SequenceFeature } from '@/app/lib/dna/types';
 
 // Function to find matching subsequences
 function findMatchingFeatures(sequence: string, libraryFeature: SequenceFeature, librarySequence: string): SequenceFeature | null {

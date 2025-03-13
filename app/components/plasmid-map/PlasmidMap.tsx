@@ -13,8 +13,7 @@ import { v4 as uuidv4 } from "uuid"
 import { toast } from "sonner"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Badge } from "@/components/ui/badge"
-import { Edit, Trash2, Plus, ZoomIn, ZoomOut, RotateCcw, Dna, Box, Scissors, Copy, Wand2 } from "lucide-react"
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import { Edit, Trash2, Plus, ZoomIn, ZoomOut, RotateCcw, Dna, Scissors, Copy, Wand2 } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { useClickOutside } from "../../hooks/use-click-outside"
 // import PlasmidMap3D from "./PlasmidMap3D"
@@ -160,13 +159,13 @@ export default function PlasmidMap({
   const [isCutting, setIsCutting] = useState(false)
 
   // Debounce utility function
-  const debounce = <T extends (...args: any[]) => void>(func: T, wait: number) => {
-    let timeout: NodeJS.Timeout
+  const debounce = <T extends (...args: unknown[]) => void>(func: T, wait: number): (...args: Parameters<T>) => void => {
+    let timeout: NodeJS.Timeout;
     return (...args: Parameters<T>) => {
-      clearTimeout(timeout)
-      timeout = setTimeout(() => func(...args), wait)
-    }
-  }
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func(...args), wait);
+    };
+  };
 
   useEffect(() => {
     // Update dimensions based on container size
@@ -247,8 +246,6 @@ export default function PlasmidMap({
   const baseRadius = dimensions.width * 0.35 // Plasmid circle radius
   const radius = baseRadius * zoomLevel
   const innerRadius = radius - 5 // Inner circle for double-stranded representation
-  const featureRadius = radius + 20 // Radius for feature annotations
-  const restrictionRadius = radius - 15 // Radius for restriction sites
 
   // Function to convert sequence position to angle (in radians)
   const positionToAngle = (position: number) => {
@@ -342,35 +339,20 @@ export default function PlasmidMap({
   }
 
   // Handle adding a new feature
-  const handleAddFeature = () => {
-    if (!sequence) return
-
-    if (!editFeature.name || !editFeature.type || !editFeature.start || !editFeature.end) {
-      toast.error("Name, type, and positions are required")
-      return
-    }
-
-    const feature: SequenceFeature = {
-      id: editFeature.id || uuidv4(),
-      name: editFeature.name || "",
-      type: editFeature.type || "gene",
-      start: editFeature.start || 1,
-      end: editFeature.end || sequence.length,
-      direction: editFeature.direction || "forward",
-      color: editFeature.color || featureTypes.find((ft) => ft.type === editFeature.type)?.color || "#4CAF50",
-      notes: editFeature.notes,
-    }
-
-    onAddFeature?.(feature)
-    setIsFeatureDialogOpen(false)
-    setSelectionStart(null)
-    setSelectionEnd(null)
+  const handleCreateFeature = () => {
     setEditFeature({
+      id: undefined,
       name: "",
       type: "gene",
       direction: "forward",
       color: featureTypes.find((ft) => ft.type === "gene")?.color,
+      start: selectionMenu.start,
+      end: selectionMenu.end,
     })
+    setIsFeatureDialogOpen(true)
+    setSelectionMenu(prev => ({ ...prev, visible: false }))
+    setSelectionStart(null)
+    setSelectionEnd(null)
   }
 
   // Handle feature click to show context menu
@@ -575,25 +557,10 @@ export default function PlasmidMap({
       setSelectionMenu(prev => ({ ...prev, visible: false }))
       setSelectionStart(null)
       setSelectionEnd(null)
-    } catch (err) {
+    } catch (error) {
+      console.error('Failed to copy selection:', error)
       toast.error("Failed to copy selection")
     }
-  }
-
-  const handleCreateFeature = () => {
-    setEditFeature({
-      id: undefined,
-      name: "",
-      type: "gene",
-      direction: "forward",
-      color: featureTypes.find((ft) => ft.type === "gene")?.color,
-      start: selectionMenu.start,
-      end: selectionMenu.end,
-    })
-    setIsFeatureDialogOpen(true)
-    setSelectionMenu(prev => ({ ...prev, visible: false }))
-    setSelectionStart(null)
-    setSelectionEnd(null)
   }
 
   // Draw the features as arcs
@@ -694,9 +661,9 @@ export default function PlasmidMap({
 
         const midAngle = startAngle < endAngle
           ? (startAngle + endAngle) / 2
-          : ((startAngle + endAngle + 2 * Math.PI) / 2) % (2 * Math.PI)
-        const labelPoint = polarToCartesian(midAngle, featureOuterRadius + 15)
-        const labelRotation = (midAngle * 180) / Math.PI + 90
+          : ((startAngle + endAngle + 2 * Math.PI) / 2) % (2 * Math.PI);
+        const labelPoint = polarToCartesian(midAngle, featureOuterRadius + 15);
+        const labelRotation = (midAngle * 180) / Math.PI + 90;
         let adjustedRotation = labelRotation
         let textAnchor = "middle"
 

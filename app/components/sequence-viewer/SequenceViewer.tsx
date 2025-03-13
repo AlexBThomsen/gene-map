@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { DNASequence, SequenceFeature, RestrictionSite } from '@/app/lib/dna/types';
 import { Card } from '@/components/ui/card';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
@@ -29,8 +29,6 @@ export default function SequenceViewer({
 }: SequenceViewerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [selection, setSelection] = useState<{ start: number; end: number } | null>(null);
-  const [view, setView] = useState<'regular' | 'complement' | 'translation'>('regular');
-  const [baseColors, setBaseColors] = useState<boolean>(true);
   const [isSelecting, setIsSelecting] = useState(false);
   const [selectionStartPosition, setSelectionStartPosition] = useState<number | null>(null);
   
@@ -59,7 +57,6 @@ export default function SequenceViewer({
   // Format the sequence for display with line breaks and position numbers
   const formatSequence = () => {
     const lines = [];
-    let formattedSequence = '';
 
     for (let i = 0; i < sequence.sequence.length; i += BASES_PER_LINE) {
       const lineNumber = i + 1;
@@ -82,9 +79,7 @@ export default function SequenceViewer({
   };
 
   // Get color for a DNA base
-  const getBaseColor = (base: string) => {
-    if (!baseColors) return 'currentColor';
-    
+  const getBaseColor = (base: string) => {    
     switch (base.toUpperCase()) {
       case 'A': return '#4CAF50'; // Green
       case 'T': return '#F44336'; // Red
@@ -177,7 +172,6 @@ export default function SequenceViewer({
     
     return formattedLines.map((line, lineIndex) => {
       const baseElements = [];
-      let currentPosition = line.position;
       
       // Add the position number
       baseElements.push(
@@ -274,8 +268,6 @@ export default function SequenceViewer({
             </span>
           );
         }
-        
-        currentPosition++;
       }
       
       return (

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { DNASequence } from '@/app/lib/dna/types';
+import { DNASequence, SequenceFeature } from '@/app/lib/dna/types';
 import { simulateDigest, simulateLigation, findRestrictionSites } from '@/app/lib/dna/utils';
 import { commonRestrictionEnzymes } from '@/app/lib/dna/sequence-service';
 import { toast } from 'sonner';
@@ -17,7 +17,7 @@ interface CloningToolsProps {
 export default function CloningTools({ sequences, onNewSequence }: CloningToolsProps) {
   const [selectedSequence, setSelectedSequence] = useState<string | null>(null);
   const [selectedEnzymes, setSelectedEnzymes] = useState<string[]>([]);
-  const [fragments, setFragments] = useState<{ sequence: string; start: number; end: number; features: any[] }[]>([]);
+  const [fragments, setFragments] = useState<{ sequence: string; start: number; end: number; features: SequenceFeature[] }[]>([]);
   const [selectedFragments, setSelectedFragments] = useState<number[]>([]);
   const [isCircular, setIsCircular] = useState(true);
 

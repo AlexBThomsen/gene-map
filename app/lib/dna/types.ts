@@ -44,7 +44,8 @@ export interface DNASequence {
   organism?: string;
   description?: string;
   category?: string;
-  primers?: any[];
+  accession?: string;
+  primers?: Primer[];
   createdAt: Date;
   updatedAt: Date;
 }
