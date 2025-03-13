@@ -1,0 +1,130 @@
+{
+  "id": "pBR322",
+  "name": "pBR322",
+  "sequence": "TTCTCATGTTTGACAGCTTATCATCGATAAGCTTTAATGCGGTAGTTTATCACAGTTAAATTGCTAACGCAGTCAGGCACCGTGTATGAAATCTAACAATGCGCTCATCGTCATCCTCGGCACCGTCACCCTGGATGCTGTAGGCATAGGCTTGGTTATGCCGGTACTGCCGGGCCTCTTGCGGGATATCGTCCATTCCGACAGCATCGCCAGTCACTATGGCGTGCTGCTAGCGCTATATGCGTTGATGCAATTTCTATGCGCACCCGTTCTCGGAGCACTGTCCGACCGCTTTGGCCGCCGCCCAGTCCTGCTCGCTTCGCTACTTGGAGCCACTATCGACTACGCGATCATGGCGACCACACCCGTCCTGTGGATCCTCTACGCCGGACGCATCGTGGCCGGCATCACCGGCGCCACAGGTGCGGTTGCTGGCGCCTATATCGCCGACATCACCGATGGGGAAGATCGGGCTCGCCACTTCGGGCTCATGAGCGCTTGTTTCGGCGTGGGTATGGTGGCAGGCCCCGTGGCCGGGGGACTGTTGGGCGCCATCTCCTTGCATGCACCATTCCTTGCGGCGGCGGTGCTCAACGGCCTCAACCTACTACTGGGCTGCTTCCTAATGCAGGAGTCGCATAAGGGAGAGCGTCGAGATCCCGGACACCATCGAATGGCGCAAAACCTTTCGCGGTATGGCATGATAGCGCCCGGAAGAGAGTCAATTCAGGGTGGTGAATGTGAAACCAGTAACGTTATACGATGTCGCAGAGTATGCCGGTGTCTCTTATCAGACCGTTTCCCGCGTGGTGAACCAGGCCAGCCACGTTTCTGCGAAAACGCGGGAAAAAGTGGAAGCGGCGATGGCGGAGCTGAATTACATTCCCAACCGCGTGGCACAACAACTGGCGGGCAAACAGTCGTTGCTGATTGGCGTTGCCACCTCCAGTCTGGCCCTGCACGCGCCGTCGCAAATTGTCGCGGCGATTAAATCTCGCGCCGATCAACTGGGTGCCAGCGTGGTGGTGTCGATGGTAGAACGAAGCGGCGTCGAAGCCTGTAAAGCGGCGGTGCACAATCTTCTCGCGCAACGCGTCAGTGGGCTGATCATTAACTATCCGCTGGATGACCAGGATGCCATTGCTGTGGAAGCTGCCTGCACTAATGTTCCGGCGTTATTTCTTGATGTCTCTGACCAGACACCCATCAACAGTATTATTTTCTCCCATGAAGACGGTACGCGACTGGGCGTGGAGCATCTGGTCGCATTGGGTCACCAGCAAATCGCGCTGTTAGCGGGCCCATTAAGTTCTGTCTCGGCGCGTCTGCGTCTGGCTGGCTGGCATAAATATCTCACTCGCAATCAAATTCAGCCGATAGCGGAACGGGAAGGCGACTGGAGTGCCATGTCCGGTTTTCAACAAACCATGCAAATGCTGAATGAGGGCATCGTTCCCACTGCGATGCTGGTTGCCAACGATCAGATGGCGCTGGGCGCAATGCGCGCCATTACCGAGTCCGGGCTGCGCGTTGGTGCGGATATCTCGGTAGTGGGATACGACGATACCGAAGACAGCTCATGTTATATCCCGCCGTTAACCACCATCAAACAGGATTTTCGCCTGCTGGGGCAAACCAGCGTGGACCGCTTGCTGCAACTCTCTCAGGGCCAGGCGGTGAAGGGCAATCAGCTGTTGCCCGTCTCACTGGTGAAAAGAAAAACCACCCTGGCGCCCAATACGCAAACCGCCTCTCCCCGCGCGTTGGCCGATTCATTAATGCAGCTGGCACGACAGGTTTCCCGACTGGAAAGCGGGCAGTGAGCGCAACGCAATTAATGTGAGTTAGCTCACTCATTAGGCACCCCAGGCTTTACACTTTATGCTTCCGGCTCGTATGTTGTGTGGAATTGTGAGCGGATAACAATTTCACACAGGAAACAGCTATGACCATGATTACGAATTCGAGCTCGGTACCCGGGGATCCTCTAGAGTCGACCTGCAGGCATGCAAGCTTCAGGGTTGAGATGTGTATAAGAGACAG",
+  "features": [
+    {
+      "id": "AmpR",
+      "name": "AmpR",
+      "type": "gene",
+      "start": 3293,
+      "end": 4153,
+      "direction": "forward",
+      "color": "#4CAF50",
+      "notes": "Ampicillin resistance gene"
+    },
+    {
+      "id": "TetR",
+      "name": "TetR",
+      "type": "gene",
+      "start": 86,
+      "end": 1276,
+      "direction": "forward",
+      "color": "#4CAF50",
+      "notes": "Tetracycline resistance gene"
+    },
+    {
+      "id": "ori",
+      "name": "ori",
+      "type": "ori",
+      "start": 2534,
+      "end": 3122,
+      "direction": "forward",
+      "color": "#2196F3",
+      "notes": "Origin of replication"
+    },
+    {
+      "id": "MCS",
+      "name": "MCS",
+      "type": "misc_feature",
+      "start": 4300,
+      "end": 4360,
+      "direction": "forward",
+      "color": "#607D8B",
+      "notes": "Multiple Cloning Site"
+    }
+  ],
+  "restrictionSites": [
+    {
+      "id": "EcoRI_site1",
+      "name": "EcoRI",
+      "sequence": "GAATTC",
+      "cutSite": 1,
+      "start": 4359,
+      "end": 4364
+    },
+    {
+      "id": "SacI_site1",
+      "name": "SacI",
+      "sequence": "GAGCTC",
+      "cutSite": 5,
+      "start": 4365,
+      "end": 4370
+    },
+    {
+      "id": "KpnI_site1",
+      "name": "KpnI",
+      "sequence": "GGTACC",
+      "cutSite": 5,
+      "start": 4371,
+      "end": 4376
+    },
+    {
+      "id": "BamHI_site1",
+      "name": "BamHI",
+      "sequence": "GGATCC",
+      "cutSite": 1,
+      "start": 4377,
+      "end": 4382
+    },
+    {
+      "id": "XbaI_site1",
+      "name": "XbaI",
+      "sequence": "TCTAGA",
+      "cutSite": 1,
+      "start": 4383,
+      "end": 4388
+    },
+    {
+      "id": "SalI_site1",
+      "name": "SalI",
+      "sequence": "GTCGAC",
+      "cutSite": 1,
+      "start": 4389,
+      "end": 4394
+    },
+    {
+      "id": "PstI_site1",
+      "name": "PstI",
+      "sequence": "CTGCAG",
+      "cutSite": 5,
+      "start": 4395,
+      "end": 4400
+    },
+    {
+      "id": "SphI_site1",
+      "name": "SphI",
+      "sequence": "GCATGC",
+      "cutSite": 5,
+      "start": 4401,
+      "end": 4406
+    },
+    {
+      "id": "HindIII_site1",
+      "name": "HindIII",
+      "sequence": "AAGCTT",
+      "cutSite": 1,
+      "start": 4407,
+      "end": 4412
+    }
+  ],
+  "primers": [],
+  "circular": true,
+  "length": 4361,
+  "description": "pBR322 is a commonly used E. coli cloning vector. It contains ampicillin and tetracycline resistance genes, an origin of replication, and multiple restriction sites for cloning.",
+  "organism": "Synthetic construct",
+  "source": "SnapGene",
+  "accession": "J01749",
+  "createdAt": "2023-01-01T00:00:00.000Z",
+  "updatedAt": "2023-01-01T00:00:00.000Z"
+} 

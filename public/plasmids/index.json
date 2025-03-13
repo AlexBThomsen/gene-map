@@ -1,0 +1,22 @@
+{
+  "categories": ["Common Cloning Vectors", "Expression Vectors", "CRISPR Plasmids"],
+  "plasmids": {
+    "Common Cloning Vectors": [
+      {"name": "pUC19", "path": "/plasmids/common/pUC19.json"},
+      {"name": "pBR322", "path": "/plasmids/common/pBR322.json"},
+      {"name": "pBlueScript II KS(+)", "path": "/plasmids/common/pBluescriptII-KS.json"},
+      {"name": "pGEM-T Easy", "path": "/plasmids/common/pGEM-T-Easy.json"}
+    ],
+    "Expression Vectors": [
+      {"name": "pET-28a(+)", "path": "/plasmids/expression/pET28a.json"},
+      {"name": "pEGFP-N1", "path": "/plasmids/expression/pEGFP-N1.json"},
+      {"name": "pcDNA3.1(+)", "path": "/plasmids/expression/pcDNA3.1.json"},
+      {"name": "pBAD/His", "path": "/plasmids/expression/pBAD-His.json"}
+    ],
+    "CRISPR Plasmids": [
+      {"name": "pX458 (pSpCas9-2A-GFP)", "path": "/plasmids/crispr/pX458.json"},
+      {"name": "lentiCRISPRv2", "path": "/plasmids/crispr/lentiCRISPRv2.json"},
+      {"name": "pLKO.1", "path": "/plasmids/crispr/pLKO1.json"}
+    ]
+  }
+} 

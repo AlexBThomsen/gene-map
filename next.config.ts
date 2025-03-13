@@ -1,7 +1,17 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  experimental: {
+    turbo: {
+      rules: {
+        '*.typeface.json': {
+          loaders: ['raw-loader'],
+          as: '*.js'
+        }
+      },
+      resolveExtensions: ['.js', '.jsx', '.ts', '.tsx', '.json']
+    }
+  }
 };
 
 export default nextConfig;
